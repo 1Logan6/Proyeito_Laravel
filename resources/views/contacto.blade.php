@@ -8,11 +8,23 @@
 </head>
 <body>
     <h1>Formulario de Contacto</h1>
-    <form action="">
-        <label for="correo"></label><br>
-        <input type="email" name="correo"><br>
+    <form action="contacto" method="POST">
+
+    <h3>{{ $tipo }}</h3>
+
+        @csrf 
+        <label for="correo">Correiño</label><br>
+        <input 
+        type="email" 
+        name="correo"
+        @if ($tipo == 'alumno')
+            value="@alumno.com"
+        @else 
+            value="@simio.com"
+        @endif
+        ><br>
         <label name="comentario">Comenta</label><br>
-        <textarea name="comentario" id="comentario" cols="30" rows="30"></textarea>
+        <textarea name="comentario" id="comentario" cols="30" rows="30"></textarea><br>
         <input type="submit" value="Enviar">
     </form>
 </body>
