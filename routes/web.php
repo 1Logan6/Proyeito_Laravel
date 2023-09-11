@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\SitioController;
+use App\Http\Controllers\TareaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacto/{tipo?}', function ($tipo = null) {
-    //dd($tipo);
-    return view('contacto', compact('tipo'));
-});
-
-Route::POST('/contacto', function (Request $request) {
-    dd($request->all());
-});
+Route::get('/contacto/{tipo?}', [SitioController::class, 'contactoForm']);
+Route::POST('/contacto', [SitioController::class, 'contactoSave']);//el primer atributo es el nombre del controlador
+//la segunda es el nombre de la funcion
+Route::resource('tarea',TareaController::class);
